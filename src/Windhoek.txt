@@ -1,0 +1,15 @@
+1,Johanna van Wyk,30,Namibia,Windhoek,Admitted
+2,Jacobus Swart,25,Namibia,Windhoek,Outpatient
+3,Maria Amadhila,40,Namibia,Windhoek,Dead
+4,Simon Nakale,35,Namibia,Windhoek,Admitted
+5,Anna Shikongo,28,Namibia,Windhoek,Outpatient
+6,David Nghipandulwa,45,Namibia,Windhoek,Admitted
+7,Lydia Kamanya,32,Namibia,Windhoek,Outpatient
+8,Paulus Kandjou,27,Namibia,Windhoek,Admitted
+9,Helena Shilongo,38,Namibia,Windhoek,Outpatient
+10,Andreas Uupindi,31,Namibia,Windhoek,Dead
+11,Namutenya Haindongo,29,Namibia,Windhoek,Admitted
+12,Festus Amunyela,34,Namibia,Windhoek,Outpatient
+13,Eva Shikwambi,26,Namibia,Windhoek,Admitted
+14,Thomas Shipena,33,Namibia,Windhoek,Outpatient
+15,Elina Uusiku,42,Namibia,Windhoek,Admitted
