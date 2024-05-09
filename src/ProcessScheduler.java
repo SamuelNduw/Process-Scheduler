@@ -76,6 +76,22 @@ public class ProcessScheduler {
 
                     if(currentJob.isJobDone()){
                         currentJob.setFinishTime(CPUCycle); // Set the finish time when job completes
+
+                        ArrayList<Integer> retrievedAges = currentJob.getAges();
+                        int[] ages = new int[retrievedAges.size()];
+                        for(int i = 0; i < retrievedAges.size(); i++){
+                            ages[i] = retrievedAges.get(i);
+                        }
+                        int aveAge = calculateAvgAge(ages);
+                        int minAge = calculateMinAge(ages);
+                        int maxAge = calculateMaxAge(ages);
+                        int turnaroundTime = calculateTurnaroundTime(currentJob.getStartTime(), currentJob.getFinishTime());
+
+                        currentJob.setAverageAge(aveAge);
+                        currentJob.setMinimumAge(minAge);
+                        currentJob.setMaximumAge(maxAge);
+                        currentJob.setTurnaroundTime(turnaroundTime);
+                        System.out.println(currentJob);
                     }
                 }
                 currentJobIndex = (currentJobIndex + 1) % jobs.length;
@@ -88,37 +104,26 @@ public class ProcessScheduler {
             }
         }
 
-        int averageTurnaroundTime = 0;
+        double averageTurnaroundTime = 0;
+        int[] turnaroundTimes = new int[jobs.length];
 
-        // Set calculations using ages from array lists
-        for(PCB job : jobs){
-            ArrayList<Integer> retrievedAges = job.getAges();
-            int[] ages = new int[retrievedAges.size()];
-            for(int i = 0; i < retrievedAges.size(); i++){
-                ages[i] = retrievedAges.get(i);
-            }
-            double aveAge = calculateAvgAge(ages);
-            int minAge = calculateMinAge(ages);
-            int maxAge = calculateMaxAge(ages);
-            int turnaroundTime = calculateTurnaroundTime(job.getStartTime(), job.getFinishTime());
-
-            job.setAverageAge(aveAge);
-            job.setMinimumAge(minAge);
-            job.setMaximumAge(maxAge);
-            job.setTurnaroundTime(turnaroundTime);
-
-            System.out.println(job.toString());
+        // Increment turnaround Time then divide it by the total number of jobs
+        for(int i = 0; i < jobs.length; i++){
+            turnaroundTimes[i] = jobs[i].getTurnaroundTime();
+            System.out.println(jobs[i].toString());
         }
+        averageTurnaroundTime = calculateAverageTurnaroundTime(turnaroundTimes);
+        System.out.println("Average Turnaround Time: " + averageTurnaroundTime);
     }
 
-    public static double calculateAvgAge(int[] ages){
-        double averageAge = 0;
+    public static int calculateAvgAge(int[] ages){
+        int averageAge = 0;
         int sum = 0;
         int count = ages.length;
         for(int age : ages){
             sum += age;
         }
-        averageAge = (double) sum / count;
+        averageAge = sum / count;
         return averageAge;
     }
     public static int calculateMinAge(int[] ages){
@@ -157,7 +162,7 @@ public class ProcessScheduler {
         return turnaroundTime;
     }
 
-    public double calculateAverageTurnaroundTime(int[] turnaroundTimes){
+    public static double calculateAverageTurnaroundTime(int[] turnaroundTimes){
         if(turnaroundTimes == null || turnaroundTimes.length == 0){
             return 0; // Return 0 if the array is empty or null
         }
